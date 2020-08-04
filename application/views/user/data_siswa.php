@@ -29,7 +29,7 @@
           <td>
           	<a href="<?php echo base_url('User/detail_data_siswa/'.$s['nis']); ?>" class="btn btn-warning"><i class="fa fa-eye"></i> Detail</a>
           	<a href="<?php echo base_url('User/edit_data_siswa/'.$s['nis']); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
-          	<a href="<?php echo base_url('User/hapus_data_siswa'); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
+          	<a href="<?php echo base_url('User/hapus_data_siswa/'.$s['nis']); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
         </tr>
     	<?php $no++;} ?>
         </tbody>

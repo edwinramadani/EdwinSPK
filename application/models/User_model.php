@@ -36,6 +36,14 @@ class User_model extends CI_Model {
 		$this->db->insert('tb_siswa', $data);
 	}
 
+	public function updatesiswa($data) {
+		$this->db->replace('tb_siswa', $data);
+	}
+
+	public function deletesiswa($nis)	{
+		$this->db->where('nis', $nis)->delete('tb_siswa');
+	}
+
 	// AKHIR SISWA
 
 	// KELAS
@@ -44,13 +52,37 @@ class User_model extends CI_Model {
 		return $this->db->get('tb_kelas')->result_array();
 	}
 
+	public function lastid() {
+		return $this->db->select('id_kelas')->order_by('id_kelas',"desc")->limit(1)->get('tb_kelas')->row();
+	}
+
+	public function selectonekelas($id)	{
+		return $this->db->select('*')->from('tb_kelas')->where('id_kelas',$id)->get()->row();
+	}
+
 	public function insertkelas($data) {
 		$this->db->insert('tb_kelas', $data);
+	}
+
+	public function updatekelas($data) {
+		$this->db->replace('tb_kelas', $data);
+	}
+
+	public function deletekelas($id) {
+		$this->db->where('id_kelas', $id)->delete('tb_kelas');
 	}
 
 	// AKHIR KELAS
 
 	// PEMBOBOTAN KRITERIA
+
+	public function lastidkrt()	{
+		return $this->db->select('id_kriteria')->order_by('id_kriteria',"desc")->limit(1)->get('tb_pembobotan_kriteria')->row();
+	}
+
+	public function selectonebobotkriteria($id)	{
+		return $this->db->select('*')->where('id_kriteria',$id)->get('tb_pembobotan_kriteria')->row();
+	}
 
 	public function all_pembobotan_kriteria()	{
 		return $this->db->get('tb_pembobotan_kriteria')->result_array();
@@ -58,6 +90,14 @@ class User_model extends CI_Model {
 
 	public function insertpembobotankriteria($data) {
 		$this->db->insert('tb_pembobotan_kriteria', $data);
+	}
+
+	public function updatebobotkriteria($data) {
+		$this->db->replace('tb_pembobotan_kriteria', $data);
+	}
+
+	public function deletebobotkriteria($id)	{
+		$this->db->where('id_kriteria', $id)->delete('tb_pembobotan_kriteria');
 	}
 
 	// AKHIR PEMBOBOTAN KRITERIA
@@ -72,8 +112,20 @@ class User_model extends CI_Model {
 		return $this->db->select("*")->from("tb_kriteria")->where('kriteria',$idkriteria)->get()->result_array();
 	}
 
+	public function selectonekriteria($id)	{
+		return $this->db->select('*')->where('id_list',$id)->get('tb_kriteria')->row();
+	}
+
 	public function insertkriteria($data) {
 		$this->db->insert('tb_kriteria', $data);
+	}
+
+	public function updatekriteria($data) {
+		$this->db->replace('tb_kriteria', $data);
+	}
+
+	public function deletekriteria($id)	{
+		$this->db->where('id_list', $id)->delete('tb_kriteria');
 	}
 
 	// AKHIR KRITERIA

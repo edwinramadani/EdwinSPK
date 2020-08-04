@@ -96,8 +96,6 @@ class User extends CI_Controller {
 		$data = array(
 			'nis' => $this->input->post('nis'),
 			'nama' => $this->input->post('nama'),
-			'username' => $this->input->post('username'),
-			'password' => $this->input->post('password'),
 			'kelas' => $this->input->post('kelas'),
 			'alamat' => $this->input->post('alamat'),
 			'tempat_lahir' => $this->input->post('tempatlahir'),
@@ -109,10 +107,8 @@ class User extends CI_Controller {
 			'tahun_masuk' => $this->input->post('thmasuk'),
 			'email' => $this->input->post('email'),
 			'telp' => $this->input->post('telp'),
-			'foto' => $data['file_name'],
-			'blokir' => $this->input->post('blokir')
+			'foto' => $data['file_name']
 		);
-		var_dump($data);die();
 		$insert = $this->user->insertsiswa($data);
 		$this->data_siswa();
 	}
@@ -129,6 +125,28 @@ class User extends CI_Controller {
 		$this->load->view('v_index', $data);
 	}
 
+	public function action_edit_data_siswa() {
+		$this->out();
+
+		$data = array(
+			'nis' => $this->input->post('nis'),
+			'nama' => $this->input->post('nama'),
+			'kelas' => $this->input->post('kelas'),
+			'alamat' => $this->input->post('alamat'),
+			'tempat_lahir' => $this->input->post('tempatlahir'),
+			'tanggal_lahir' => $this->input->post('tahun').'-'.$this->input->post('bulan').'-'.$this->input->post('tanggal'),
+			'jenis_kelamin' => $this->input->post('jeniskelamin'),
+			'agama' => $this->input->post('agama'),
+			'ayah_wali' => $this->input->post('ayahwali'),
+			'ibu' => $this->input->post('namaibu'),
+			'tahun_masuk' => $this->input->post('thmasuk'),
+			'email' => $this->input->post('email'),
+			'telp' => $this->input->post('telp')
+		);
+		$insert = $this->user->updatesiswa($data);
+		$this->data_siswa();
+	}
+
 	public function detail_data_siswa() {
 		$this->out();
 
@@ -142,6 +160,8 @@ class User extends CI_Controller {
 
 	public function hapus_data_siswa() {
 		$this->out();
+		$nis = $this->uri->segment(3);
+		$delete = $this->user->deletesiswa($nis);
 		$this->data_siswa();
 	}
 
@@ -160,11 +180,22 @@ class User extends CI_Controller {
 
 	public function tambah_data_kelas() {
 		$this->out();
+		$lastid = $this->user->lastid();
+		if ($lastid == "") {
+			$kls = "kls";
+			$num = "1";
+		} else {
+			$kls = substr($lastid->id_kelas,0,3);
+			$num = substr($lastid->id_kelas,3)+1;
+		}
+		
+
 		$data = array(
 			'judul' => 'Tambah Kelas',
 			'konten' => 'user/tambah_data_kelas',
 			'button' => 'Simpan',
-			'action' => base_url('User/action_tambah_data_kelas')
+			'action' => base_url('User/action_tambah_data_kelas'),
+			'new_id' => $kls.$num
 		);
 		$this->load->view('v_index', $data);
 	}
@@ -182,16 +213,32 @@ class User extends CI_Controller {
 
 	public function edit_data_kelas() {
 		$this->out();
+		$id = $this->uri->segment(3);
 		$data = array(
 			'judul' => 'Edit Kelas',
 			'konten' => 'user/tambah_data_kelas',
-			'button' => 'Edit'
+			'button' => 'Edit',
+			'action' => base_url('User/action_edit_data_kelas'),
+			'kelas' => $this->user->selectonekelas($id)
 		);
 		$this->load->view('v_index', $data);
 	}
 
+	public function action_edit_data_kelas() {
+		$this->out();
+		$data = array(
+			'id_kelas' => $this->input->post('idkelas'),
+			'nama_kelas' => $this->input->post('namakelas'),
+		);
+
+		$update = $this->user->updatekelas($data);
+		$this->data_kelas();
+	}
+
 	public function hapus_data_kelas() {
 		$this->out();
+		$id = $this->uri->segment(3);
+		$delete = $this->user->deletekelas($id);
 		$this->data_kelas();
 	}
 
@@ -222,11 +269,21 @@ class User extends CI_Controller {
 
 	public function tambah_pembobotan_kriteria() {
 		$this->out();
+		$lastidkrt = $this->user->lastidkrt();
+		if ($lastidkrt == "") {
+			$krt = "krt";
+			$numkrt = "1";
+		} else {
+			$krt = substr($lastidkrt->id_kriteria,0,3);
+			$numkrt = substr($lastidkrt->id_kriteria,3)+1;
+		}
+		
 		$data = array(
 			'judul' => 'Tambah Pembobotan Kriteria',
 			'konten' => 'user/tambah_pembobotan_kriteria',
 			'button' => 'Simpan',
-			'action' => base_url('User/action_tambah_pembobotan_kriteria')
+			'action' => base_url('User/action_tambah_pembobotan_kriteria'),
+			'new_id' => $krt.$numkrt
 		);
 		$this->load->view('v_index', $data);
 	}
@@ -234,8 +291,9 @@ class User extends CI_Controller {
 	public function action_tambah_pembobotan_kriteria() {
 		$this->out();
 		$data = array(
+			'id_kriteria' => $this->input->post('idkriteria'),
 			'nama_kriteria' => $this->input->post('namakriteria'),
-			'bobot' => $this->input->post('bobot'),
+			'bobot' => $this->input->post('bobot')
 		);
 
 		$insert = $this->user->insertpembobotankriteria($data);
@@ -244,16 +302,34 @@ class User extends CI_Controller {
 
 	public function edit_pembobotan_kriteria() {
 		$this->out();
+		$id = $this->uri->segment(3);
 		$data = array(
 			'judul' => 'Edit Pembobotan Kriteria',
 			'konten' => 'user/tambah_pembobotan_kriteria',
-			'button' => 'Edit'
+			'button' => 'Edit',
+			'action' => base_url('User/action_edit_pembobotan_kriteria'),
+			'kriteria' => $this->user->selectonebobotkriteria($id)
 		);
+
 		$this->load->view('v_index', $data);
+	}
+
+	public function action_edit_pembobotan_kriteria() {
+		$this->out();
+		$data = array(
+			'id_kriteria' => $this->input->post('idkriteria'),
+			'nama_kriteria' => $this->input->post('namakriteria'),
+			'bobot' => $this->input->post('bobot')
+		);
+
+		$update = $this->user->updatebobotkriteria($data);
+		$this->pembobotan_kriteria();
 	}
 
 	public function hapus_pembobotan_kriteria() {
 		$this->out();
+		$id = $this->uri->segment(3);
+		$delete = $this->user->deletebobotkriteria($id);
 		$this->pembobotan_kriteria();
 	}
 
@@ -313,16 +389,34 @@ class User extends CI_Controller {
 
 	public function edit_data_kriteria() {
 		$this->out();
+		$id = $this->uri->segment(3);
 		$data = array(
 			'judul' => 'Edit Kriteria',
 			'konten' => 'user/tambah_data_kriteria',
-			'button' => 'Edit'
+			'button' => 'Edit',
+			'action' => base_url('User/action_edit_data_kriteria'),
+			'kriteria' => $this->user->selectonekriteria($id)
 		);
 		$this->load->view('v_index', $data);
 	}
 
+	public function action_edit_data_kriteria() {
+		$this->out();
+		$data = array(
+			'id_list' => $this->input->post('idlist'),
+			'kriteria' => $this->input->post('kriteria'),
+			'list' => $this->input->post('list'),
+			'keterangan' => $this->input->post('ket'),
+			'nilai' => $this->input->post('nilai')
+		);
+		$insert = $this->user->updatekriteria($data);
+		$this->input_data_kriteria();
+	}
+
 	public function hapus_data_kriteria() {
 		$this->out();
+		$id = $this->uri->segment(3);
+		$delete = $this->user->deletekriteria($id);
 		$this->input_data_kriteria();
 	}
 

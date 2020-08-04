@@ -14,8 +14,8 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
-              <img class="profile-user-img img-fluid img-circle"
-                   src="assets/dist/img/photo-4.jpg"
+              <img class="profile-user-img img-fluid img-circle" width="100" height="100"
+                   src="assets/fotoprofile/<?php echo $d['foto']; ?>"
                    alt="User profile picture">
             </div>           
             
@@ -60,6 +60,9 @@
                       <b class="detail">Tempat Lahir</b> <a class="float-right"><?php echo $d['tempat_lahir']; ?></a>
                     </li>
                     <li class="list-group-item">
+                      <b class="detail">Tanggal Lahir</b> <a class="float-right">Tanggal lahir</a>
+                    </li>
+                    <li class="list-group-item">
                       <b class="detail">Jenis Kelamin</b>
                         <a class="float-right">
                           <?php if ($d['jenis_kelamin'] == 1): ?>
@@ -95,16 +98,6 @@
                     </li>
                     <li class="list-group-item">
                       <b class="detail">No. Hp</b> <a class="float-right"><?php echo $d['telp']; ?></a>
-                    </li>
-                    <li class="list-group-item">
-                      <b class="detail">Blokir</b> 
-                        <a class="float-right">
-                          <?php if ($d['blokir'] == 1): ?>
-                            <?php echo 'Y'; ?>
-                          <?php else: ?>
-                            <?php echo 'N'; ?>
-                          <?php endif ?>
-                        </a>
                     </li>
                     <li class="list-group-item">
                       <b class="detail">Nama Ayah</b> <a class="float-right"><?php echo $d['ayah_wali']; ?></a>

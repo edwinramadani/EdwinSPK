@@ -25,8 +25,8 @@
           <td><?php echo $k['keterangan']; ?></td>
           <td><?php echo $k['nilai']; ?></td>
           <td>
-            <a href="<?php echo base_url('User/edit_data_kriteria'); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
-            <a href="<?php echo base_url('User/hapus_data_kriteria'); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
+            <a href="<?php echo base_url('User/edit_data_kriteria/'.$k['id_list']); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
+            <a href="<?php echo base_url('User/hapus_data_kriteria/'.$k['id_list']); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
         </tr>
       <?php $no++;} ?>
         </tbody>
