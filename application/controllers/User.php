@@ -434,32 +434,6 @@ class User extends CI_Controller {
 		$this->load->view('v_index', $data);
 	}
 
-	public function tambah_klasifikasi() {
-		$this->out();
-		$data = array(
-			'judul' => 'Data Klasifikasi',
-			'konten' => 'user/tambah_data_klasifikasi',
-			'button' => 'Proses',
-			'onesiswa' => $this->user->one_klasifikasi($this->uri->segment(3)),
-			'bbkriteria' => $this->user->all_bbkriteria(),
-			'action' => base_url('User/action_tambah_klasifikasi')
-		);
-		$this->load->view('v_index', $data);
-	}
-
-	public function action_tambah_klasifikasi() {
-		$data = array(
-			'nis' => $this->input->post('nis'),
-			'krt1' => $this->input->post('krt1'),
-			'krt2' => $this->input->post('krt2'),
-			'krt3' => $this->input->post('krt3'),
-			'krt4' => $this->input->post('krt4'),
-			'krt5' => $this->input->post('krt5')
-		);
-		$insert = $this->user->insertklasifikasi($data);
-		$this->data_klasifikasi();		
-	}
-
 	public function edit_klasifikasi() {
 		$this->out();
 		$data = array(
@@ -468,13 +442,16 @@ class User extends CI_Controller {
 			'button' => 'Proses',
 			'onesiswa' => $this->user->one_klasifikasi($this->uri->segment(3)),
 			'bbkriteria' => $this->user->all_bbkriteria(),
+			'idnilai' => $this->uri->segment(4),
 			'action' => base_url('User/action_edit_klasifikasi')
 		);
+
 		$this->load->view('v_index', $data);
 	}
 
 	public function action_edit_klasifikasi() {
 		$data = array(
+			'id_nilai' => $this->input->post('idnilai'),
 			'nis' => $this->input->post('nis'),
 			'krt1' => $this->input->post('krt1'),
 			'krt2' => $this->input->post('krt2'),
@@ -482,7 +459,7 @@ class User extends CI_Controller {
 			'krt4' => $this->input->post('krt4'),
 			'krt5' => $this->input->post('krt5')
 		);
-		var_dump($data);die();
+		
 		$insert = $this->user->insertklasifikasi($data);
 		$this->data_klasifikasi();		
 	}

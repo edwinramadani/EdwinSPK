@@ -1,3 +1,4 @@
+<?php $idnl = $idnilai; ?>
 <script>
     <?php foreach ($bbkriteria as $bk): ?>
     $(document).ready(function(){
@@ -12,6 +13,7 @@
               success: function(krt){
                   var html = '';
                   var i;
+                  html += '<option value=""></option>';
                   for(i=0; i<krt.length; i++){
                             html += '<option value="'+krt[i].nilai+'">'+krt[i].list+'</option>';
                         }
@@ -73,17 +75,17 @@
                   <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
                     <!-- Value -->
 
-                    <div class="form-group">
+                    <div class="form-group" hidden="true">
                       <div class="row">
                         <div class="col-sm-3"><label for="varchar">id nilai</label></div>
                         <div class="col-sm-6">
-                          <input class="form-control" type="text" name="nis" id="nis" value="<?php echo $idnilai; ?>">
+                          <input class="form-control" type="text" name="idnilai" id="idnilai" value="<?php echo $idnl; ?>">
                           </select>
                         </div>
                       </div>
                     </div>
 
-                    <div class="form-group" hidden="off">
+                    <div class="form-group" hidden="true">
                       <div class="row">
                         <div class="col-sm-3"><label for="varchar">nis</label></div>
                         <div class="col-sm-6">
@@ -99,7 +101,7 @@
                           <div class="col-sm-3"><label for="varchar"><?php echo $bk['nama_kriteria']; ?></label></div>
                           <div class="col-sm-6">
                             <select class="form-control" name="<?php echo $bk['id_kriteria'] ?>" id="<?php echo $bk['id_kriteria'] ?>">
-                              <!-- <option value=""></option> -->
+                              
                             </select>
                           </div>
                         </div>

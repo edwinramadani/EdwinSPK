@@ -25,7 +25,6 @@
           <td><?php echo $s['krt4']; ?></td>
           <td><?php echo $s['krt5']; ?></td>
           <td>
-             <a href="<?php echo base_url('User/tambah_klasifikasi/'.$s['nis']); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Tambah</a>
             <a href="<?php echo base_url('User/edit_klasifikasi/'.$s['nis'].'/'.$s['id_nilai']); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
         </tr>
       <?php $no++; } ?>

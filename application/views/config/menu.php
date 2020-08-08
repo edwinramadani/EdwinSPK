@@ -12,7 +12,7 @@
           <a href="<?php echo site_url('User/data_kelas'); ?>" id="kelas" class="list-group-item" data-toggle="buttom"></i>Data Kelas</a> 
           <a href="<?php echo site_url('User/pembobotan_kriteria'); ?>" id="pembobotan" class="list-group-item" data-toggle="buttom"></i>Pembobotan Kriteria</a>
           <a href="<?php echo site_url('User/data_kriteria'); ?>" id="kriteria" class="list-group-item" data-toggle="buttom"></i>Data Kriteria</a>
-          <a href="<?php echo site_url('User/data_klasifikasi'); ?>" id="klasifikasi" class="list-group-item" data-toggle="buttom"></i>Data Klasifikasi</a>
+          <a href="<?php echo site_url('User/data_klasifikasi'); ?>" id="klasifikasi" class="list-group-item" data-toggle="buttom"></i>Data Nilai</a>
         </li>
       </li>
       <li>
