@@ -17,7 +17,7 @@
           <td>
             <a href="<?php echo base_url('User/input_data_kriteria/'.$k['id_kriteria']); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Input Data Kriteria</a>
         </tr>
-      <?php } ?>
+      <?php $no++;} ?>
         </tbody>
       </table>
     </div>

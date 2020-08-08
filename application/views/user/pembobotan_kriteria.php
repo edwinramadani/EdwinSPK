@@ -24,7 +24,7 @@
             <a href="<?php echo base_url('User/edit_pembobotan_kriteria/'.$pk['id_kriteria']); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
             <a href="<?php echo base_url('User/hapus_pembobotan_kriteria/'.$pk['id_kriteria']); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
         </tr>
-      <?php } ?>
+      <?php $no++; } ?>
         </tbody>
       </table>
     </div>

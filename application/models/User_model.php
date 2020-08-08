@@ -133,11 +133,23 @@ class User_model extends CI_Model {
 	// KLASIFIKASI
 
 	public function siswa() {
-		return $this->db->select("nis,nama,kelas")->from("tb_siswa")->get()->result_array();
+		return $this->db->select("tb_siswa.nis,nama,kelas,id_nilai,krt1,krt2,krt3,krt4,krt5")->from("tb_siswa")->join("tb_nilai","tb_siswa.nis=tb_nilai.nis","left")->get()->result_array();
 	}
 
 	public function one_klasifikasi($nis) {
 		return $this->db->select("nis,nama,kelas,foto")->from("tb_siswa")->where('nis',$nis)->get()->result_array();
+	}
+
+	public function all_bbkriteria() {
+		return $this->db->get('tb_pembobotan_kriteria')->result_array();
+	}
+
+	public function getkone($id) {
+		return $this->db->select('*')->where('kriteria',$id)->get('tb_kriteria')->result_array();
+	}
+
+	public function insertklasifikasi($data)  {
+		$this->db->replace('tb_nilai', $data);
 	}
 
 	// AKHIR KLASIFIKASI
