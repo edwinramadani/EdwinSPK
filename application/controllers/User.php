@@ -29,36 +29,6 @@ class User extends CI_Controller {
 		$this->load->view('v_index', $data);
 	}
 
-	public function data_alat_mining() {
-		$this->out();
-		$data = array(
-			'judul' => 'Data Alat Mining',
-			'konten' => 'user/data_alat_mining',
-			'result' => $this->user->data_alat_mining()
-		);
-		$this->load->view('v_index', $data);
-	}
-
-	// public function data_kriteria() {
-	// 	$this->out();
-	// 	$data = array(
-	// 		'judul' => 'Data Kriteria',
-	// 		'konten' => 'user/data_kriteria',
-	// 		'fuzzy_kriteria' => $this->user->fuzzy_kriteria() ,
-	// 		'moo_kriteria' => $this->user->moo_kriteria() ,
-	// 		'harga' => $this->user->harga() ,
-	// 		'kecepatan' => $this->user->kecepatan() ,
-	// 		'listrik' => $this->user->listrik() ,
-	// 		'keuntungan' => $this->user->keuntungan()
-	// 	);
-	// 	$this->load->view('v_index', $data);
-	// }
-
-	public function proses_moora() {
-		$this->out();
-		# code...
-	}
-
 	// Data Siswa
 
 	public function data_siswa() {
@@ -427,7 +397,7 @@ class User extends CI_Controller {
 	public function data_klasifikasi() {
 		$this->out();
 		$data = array(
-			'judul' => 'Data Klasifikasi',
+			'judul' => 'Data Nilai',
 			'konten' => 'user/data_klasifikasi',
 			'siswa' => $this->user->siswa()
 		);
@@ -437,7 +407,7 @@ class User extends CI_Controller {
 	public function edit_klasifikasi() {
 		$this->out();
 		$data = array(
-			'judul' => 'Data Klasifikasi',
+			'judul' => 'Data Nilai',
 			'konten' => 'user/tambah_data_klasifikasi',
 			'button' => 'Proses',
 			'onesiswa' => $this->user->one_klasifikasi($this->uri->segment(3)),
@@ -473,6 +443,19 @@ class User extends CI_Controller {
 	}
 
 	// Akhir data klasifikasi
+
+	// Hasil analisa
+
+	public function hasil_analisa()	{
+		$this->out();
+		$data = array(
+			'judul' => 'Hasil Analisa',
+			'konten' => 'user/hasil_analisa'
+		);
+		$this->load->view('v_index', $data);
+	}
+
+	// Akhir analisa
 
 	// Data administrasi
 

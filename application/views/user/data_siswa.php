@@ -13,7 +13,6 @@
           <th>Nama</th>
           <th>Kelas</th>
           <th>Jenis Kelamin</th>
-          <th>Blokir</th>
           <th>Aksi</th>
         </tr>
         </thead>
@@ -24,8 +23,11 @@
           <td><?php echo $s['nis']; ?></td>
           <td><?php echo $s['nama']; ?></td>
           <td><?php echo $s['kelas']; ?></td>
-          <td><?php echo $s['jenis_kelamin']; ?></td>
-          <td><?php echo $s['blokir']; ?></td>
+          <td><?php if ($s['jenis_kelamin'] == 1) {
+            echo "Laki-laki";
+          } elseif ($s['jenis_kelamin'] == 2) {
+            echo "Perempuan";
+          } ?></td>
           <td>
           	<a href="<?php echo base_url('User/detail_data_siswa/'.$s['nis']); ?>" class="btn btn-warning"><i class="fa fa-eye"></i> Detail</a>
           	<a href="<?php echo base_url('User/edit_data_siswa/'.$s['nis']); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>

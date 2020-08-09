@@ -16,7 +16,7 @@
         </li>
       </li>
       <li>
-        <a href="User" class="list-group-item" data-toggle="collapse"><i class="fa fa-table"></i>Hasil Analisa</a>
+        <a href="<?php echo site_url('User/hasil_analisa'); ?>" class="list-group-item" data-toggle="buttom"><i class="fa fa-table"></i>Hasil Analisa</a>
       </li>
       <li>
         <a href="<?php echo base_url('User/data_administrator'); ?>" class="list-group-item" data-toggle="buttom"><i class="fa fa-cog"></i>Manajemen Pengguna</a>

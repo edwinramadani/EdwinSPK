@@ -6,12 +6,12 @@
         <tr>
           <th>No</th>
           <th>Nama</th>
-          <th>Aksi</th>
           <td>krt 1</td>
           <td>krt 2</td>
           <td>krt 3</td>
           <td>krt 4</td>
           <td>krt 5</td>
+          <th>Aksi</th>
         </tr>
         </thead>
         <tbody>
