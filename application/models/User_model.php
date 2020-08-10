@@ -83,6 +83,9 @@ class User_model extends CI_Model {
 	public function selectonebobotkriteria($id)	{
 		return $this->db->select('*')->where('id_kriteria',$id)->get('tb_pembobotan_kriteria')->row();
 	}
+	public function selectonebobotkriteria2($id, $kolom)	{
+		return $this->db->select($kolom)->where('id_kriteria',$id)->get('tb_pembobotan_kriteria')->row();
+	}
 
 	public function all_pembobotan_kriteria()	{
 		return $this->db->get('tb_pembobotan_kriteria')->result_array();
@@ -151,23 +154,6 @@ class User_model extends CI_Model {
 	public function insertklasifikasi($data)  {
 		$this->db->replace('tb_nilai', $data);
 	}
-
-	// AKHIR KLASIFIKASI
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	public function data_alat_mining() {
 		return $this->db->get('data_alat')->result_array();

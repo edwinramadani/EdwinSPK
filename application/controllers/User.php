@@ -38,6 +38,7 @@ class User extends CI_Controller {
 			'konten' => 'user/data_siswa',
 			'button' => 'Tambah Siswa',
 			'url' => base_url('User/tambah_data_siswa'),
+			'kriteria'=> $this->user->all_pembobotan_kriteria(),
 			'siswa' => $this->user->all_siswa()
 		);
 		$this->load->view('v_index', $data);
@@ -315,7 +316,7 @@ class User extends CI_Controller {
 		$data = array(
 			'judul' => 'Data Kriteria',
 			'konten' => 'user/data_kriteria',
-			'kriteria' => $this->user->all_kriteria()
+			'kriteria' => $this->user->all_kriteria(),
 		);
 		$this->load->view('v_index', $data);
 	}
@@ -399,6 +400,11 @@ class User extends CI_Controller {
 		$data = array(
 			'judul' => 'Data Nilai',
 			'konten' => 'user/data_klasifikasi',
+			'krt1'	=> $this->user->selectonebobotkriteria('krt1'),
+			'krt2'	=> $this->user->selectonebobotkriteria('krt2'),
+			'krt3'	=> $this->user->selectonebobotkriteria('krt3'),
+			'krt4'	=> $this->user->selectonebobotkriteria('krt4'),
+			'krt5'	=> $this->user->selectonebobotkriteria('krt5'),
 			'siswa' => $this->user->siswa()
 		);
 		$this->load->view('v_index', $data);
