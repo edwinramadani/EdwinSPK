@@ -155,6 +155,12 @@ class User_model extends CI_Model {
 		$this->db->replace('tb_nilai', $data);
 	}
 
+
+
+
+
+	
+
 	public function data_alat_mining() {
 		return $this->db->get('data_alat')->result_array();
 	}

@@ -456,7 +456,13 @@ class User extends CI_Controller {
 		$this->out();
 		$data = array(
 			'judul' => 'Hasil Analisa',
-			'konten' => 'user/hasil_analisa'
+			'konten' => 'user/hasil_analisa',
+			'krt1'	=> $this->user->selectonebobotkriteria('krt1'),
+			'krt2'	=> $this->user->selectonebobotkriteria('krt2'),
+			'krt3'	=> $this->user->selectonebobotkriteria('krt3'),
+			'krt4'	=> $this->user->selectonebobotkriteria('krt4'),
+			'krt5'	=> $this->user->selectonebobotkriteria('krt5'),
+			'siswa' => $this->user->siswa()
 		);
 		$this->load->view('v_index', $data);
 	}
