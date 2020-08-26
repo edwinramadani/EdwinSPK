@@ -50,7 +50,7 @@
           <td><?php echo $s['krt3']; ?></td>
           <td><?php echo $s['krt4']; ?></td>
           <td><?php echo $s['krt5']; ?></td>
-          <td><?php echo $nilaiy;?></td>
+          <td><?php echo round($nilaiy, 2);?></td>
           <td>
             <a href="<?php echo base_url('User/edit_klasifikasi/'.$s['nis'].'/'.$s['id_nilai']); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
         </tr>

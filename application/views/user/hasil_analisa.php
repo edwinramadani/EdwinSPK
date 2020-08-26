@@ -37,7 +37,7 @@
           $nilaiy =($x1*$krt1->bobot/100)+($x2*$krt2->bobot/100)+($x3*$krt3->bobot/100)+($x4*$krt4->bobot/100)+($x5*$krt5->bobot/100);
 
           $data[] = array(
-          	"nilai" => $nilaiy,
+          	"nilai" => round($nilaiy, 2),
           	"nama" => $s['nama']
           	
           );
@@ -45,7 +45,7 @@
 		}
         ?>
 
-        <?php asort($data); $no=1; foreach ($data as $dt): ?>
+        <?php arsort($data); $no=1; foreach ($data as $dt): ?>
         	<tr>
         		<td><?php echo $no; ?></td>
         		<td><?php echo $dt['nama']; ?></td>
