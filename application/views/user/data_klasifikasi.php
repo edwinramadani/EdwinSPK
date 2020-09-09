@@ -39,7 +39,8 @@
           $x3 = $s['krt3']/sqrt($ttl3);
           $x4 = $s['krt4']/sqrt($ttl4);
           $x5 = $s['krt5']/sqrt($ttl5);
-          $nilaiy =($x1*$krt1->bobot/100)+($x2*$krt2->bobot/100)+($x3*$krt3->bobot/100)+($x4*$krt4->bobot/100)+($x5*$krt5->bobot/100);
+          $Maximum =($x1*$krt1->bobot/100)+($x3*$krt3->bobot/100)+($x4*$krt4->bobot/100)+($x5*$krt5->bobot/100);
+          $Minimum =($x2*$krt2->bobot/100);
 
         ?>
         <tr>
@@ -50,7 +51,7 @@
           <td><?php echo $s['krt3']; ?></td>
           <td><?php echo $s['krt4']; ?></td>
           <td><?php echo $s['krt5']; ?></td>
-          <td><?php echo round($nilaiy, 2);?></td>
+          <td><?php echo round($Maximum, 2) - round($Minimum, 2);?></td>
           <td>
             <a href="<?php echo base_url('User/edit_klasifikasi/'.$s['nis'].'/'.$s['id_nilai']); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
         </tr>

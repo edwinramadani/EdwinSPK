@@ -34,10 +34,11 @@
           $x3 = $s['krt3']/sqrt($ttl3);
           $x4 = $s['krt4']/sqrt($ttl4);
           $x5 = $s['krt5']/sqrt($ttl5);
-          $nilaiy =($x1*$krt1->bobot/100)+($x2*$krt2->bobot/100)+($x3*$krt3->bobot/100)+($x4*$krt4->bobot/100)+($x5*$krt5->bobot/100);
+          $Maximum =($x1*$krt1->bobot/100)+($x3*$krt3->bobot/100)+($x4*$krt4->bobot/100)+($x5*$krt5->bobot/100);
+          $Minimum =($x2*$krt2->bobot/100);
 
           $data[] = array(
-          	"nilai" => round($nilaiy, 2),
+          	"nilai" => round($Maximum, 2) - round($Minimum, 2),
           	"nama" => $s['nama']
           	
           );
