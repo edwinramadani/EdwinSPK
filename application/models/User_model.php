@@ -33,7 +33,7 @@ class User_model extends CI_Model {
 	}
 
 	public function insertsiswa($data) {
-		$this->db->insert('tb_siswa', $data);
+		$this->db->replace('tb_siswa', $data);
 	}
 
 	public function updatesiswa($data) {
