@@ -1,3 +1,4 @@
+
 <div class="card">
     <div class="card-header">
       <a href="<?php echo $url; ?>" class="btn btn-primary"><i class="fa fa-plus"></i> <?php echo $button; ?></a>
@@ -13,7 +14,9 @@
           <th>Nama</th>
           <th>Kelas</th>
           <th>Jenis Kelamin</th>
-          <th>Aksi</th>
+          <?php if (!isset($ket)): ?>
+            <th>Aksi</th>
+          <?php endif ?>
         </tr>
         </thead>
         <tbody>
@@ -22,16 +25,19 @@
           <td><?php echo $no ?></td>
           <td><?php echo $s['nis']; ?></td>
           <td><?php echo $s['nama']; ?></td>
-          <td><?php echo $s['kelas']; ?></td>
+          <td><?php echo $s['nama_kelas']; ?></td>
           <td><?php if ($s['jenis_kelamin'] == 1) {
             echo "Laki-laki";
           } elseif ($s['jenis_kelamin'] == 2) {
             echo "Perempuan";
           } ?></td>
-          <td>
-          	<a href="<?php echo base_url('User/detail_data_siswa/'.$s['nis']); ?>" class="btn btn-warning"><i class="fa fa-eye"></i> Detail</a>
-          	<a href="<?php echo base_url('User/edit_data_siswa/'.$s['nis']); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
-          	<a href="<?php echo base_url('User/hapus_data_siswa/'.$s['nis']); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
+          <?php if (!isset($ket)): ?>
+            <td>
+              <a href="<?php echo base_url('User/detail_data_siswa/'.$s['nis']); ?>" class="btn btn-warning"><i class="fa fa-eye"></i> Detail</a>
+              <a href="<?php echo base_url('User/edit_data_siswa/'.$s['nis']); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
+              <a href="<?php echo base_url('User/hapus_data_siswa/'.$s['nis']); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a>
+            </td>
+          <?php endif ?>
         </tr>
     	<?php $no++;} ?>
         </tbody>

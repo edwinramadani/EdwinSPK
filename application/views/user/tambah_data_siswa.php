@@ -1,17 +1,18 @@
+
 <?php 
   $bln = array(1=>"Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember");
-  $kls = array(1=>"7A","7B","7C","7D","7E","7F","7G","8A","8B","8C","8D","8E","8F","8G","9A","9B","9C","9D","9E","9F","9G");
 ?>
 
 <?php if (isset($siswa)) {
   foreach ($siswa as $s) {
     $nis = $s['nis'];
     $nama = $s['nama'];
-    $kelas = $s['kelas'];
+    $id_kls = $s['id_kelas'];
+    $kls = $s['nama_kelas'];
     $alamat = $s['alamat'];
     $tempatlahir = $s['tempat_lahir'];
     $tanggallahir = $s['tanggal_lahir'];
-    $jenis_kelamin = $s['jenis_kelamin'];
+    $jeniskelamin = $s['jenis_kelamin'];
     $agama = $s['agama'];
     $ayahwali = $s['ayah_wali'];
     $ibu = $s['ibu'];
@@ -64,10 +65,12 @@
     <label for="varchar">Kelas</label>
     <select class="form-control" name="kelas" id="kelas">
 
-      <option value="<?php if (isset($siswa)) { echo $kls[$kelas]; } else {echo "Pilih Kelas"; } ?>"><?php if (isset($siswa)) { echo $kls[$kelas]; } else { echo "Pilih Kelas"; } ?></option>
-      <?php for ($i=1; $i <= 21 ; $i++) { 
-        echo "<option value=$i>$kls[$i]</option>";
-      } ?>
+      <option value="<?php if (isset($siswa)) { echo $id_kls; } else {echo ""; } ?>"><?php if (isset($siswa)) { echo $kls; } else { echo "Pilih Kelas"; } ?></option>
+
+      <?php foreach ($kelas as $kl): ?>
+         <option value="<?php echo $kl['id_kelas']; ?>"><?php echo $kl['nama_kelas']; ?></option>;
+      <?php endforeach ?>
+           
     </select>
   </div>
 
@@ -85,11 +88,11 @@
     <label for="varchar">Tanggal Lahir</label>
     <div class="row">
       <div class="col-sm-4">
-        <?php echo $tg; ?>
+        <!-- <?php echo $tg; ?> -->
         <select class="form-control" name="tanggal" id="tanggal">
           <?php if (isset($siswa)): ?>
-
-            <option value="<?php if (isset($siswa)) { echo $tg; } ?>"><?php echo $tg; ?></option>
+            
+            <option selected value="<?php if (isset($siswa)) { echo $tg; } ?>" ><?php echo $tg; ?></option>
             <?php for ($tgl=1; $tgl <= 31 ; $tgl++) { 
               $tgl_leng = strlen($tgl);
               if ($tgl_leng==1) {
@@ -116,7 +119,7 @@
         </select>
       </div>
       <div class="col-sm-4">
-        <?php echo $bl; ?>
+        <!-- <?php var_dump($bl); ?> -->
         <select class="form-control" name="bulan" id="Bulan">
           <?php if (isset($siswa)): ?>
             <?php 
@@ -126,7 +129,7 @@
                 $j = (int) $bl;
               }
             ?>
-            <option value="<?php echo $bln; ?>"><?php echo $bln[$j]; ?></option>
+            <option selected value="<?php echo $bl; ?>" ><?php echo $bln[$j]; ?></option>
 
             <?php for ($bulan=1; $bulan <= 12 ; $bulan++) { 
               $bln_leng = strlen($bulan);
@@ -153,11 +156,11 @@
         </select>
       </div>
       <div class="col-sm-4">
-        <?php echo $th; ?>
+        <!-- <?php echo $th; ?> -->
         <select class="form-control" name="tahun" id="tahun">
           <?php if (isset($siswa)): ?>
-
-            <option value="<?php if (isset($siswa)) { echo $th; } ?>"><?php echo $th; ?></option>
+            
+            <option selected value="<?php if (isset($siswa)) { echo $th; } ?>" ><?php echo $th; ?></option>
             <?php $now = date('Y');
             for ($thn=1980; $thn <= $now ; $thn++) { 
               echo "<option value=$thn>$thn</option>";
@@ -179,7 +182,7 @@
     <label for="varchar">Jenis Kelamin</label>
     <div class="row">
       <div class="col-sm-2 form-check form-check-inline">
-        <input type="radio" class="form-check-input" name="jeniskelamin" id="jeniskelamin1" value="1" <?php if (isset($siswa)) { if ($jeniskelamin == 1) { echo "checked"; } else { echo "checked"; }}; ?>/>
+        <input type="radio" class="form-check-input" name="jeniskelamin" id="jeniskelamin1" value="1" <?php if (isset($siswa)) { if ($jeniskelamin == 1) { echo "checked"; } else {echo "checked";}}; ?>/>
         <label class="form-check-lable" for="jeniskelamin1">Laki - Laki</label>
       </div>
       <div class="col-sm-2 form-check form-check-inline">

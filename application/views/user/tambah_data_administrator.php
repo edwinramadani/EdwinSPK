@@ -1,9 +1,19 @@
-<form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+<?php echo validation_errors(); ?>
+
+<?php echo form_open($form); ?>
+  
+  <?php if ($button == 'Edit'): ?>
+    <div class="form-group" hidden="true">
+      <input type="text" class="form-control" name="id" id="id" placeholder="Username" hidden value="<?php if (isset($admin)) { echo $admin->id_user; } ?>"/>
+    </div>
+  <?php endif ?>
+
   <div class="form-group">
     <div class="row">
-      <div class="col-sm-3"><label for="varchar">Unsername</label></div>
+      <div class="col-sm-3"><label for="varchar">Username</label></div>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="username" id="username" placeholder="Username" />
+
+        <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?php if (isset($admin)) { echo $admin->username; } ?>" />
       </div>
     </div>
   </div>
@@ -11,7 +21,7 @@
     <div class="row">
       <div class="col-sm-3"><label for="varchar">Password</label></div>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="password" id="password" placeholder="Password" />
+        <input type="text" class="form-control" name="password" id="password" placeholder="Password" value="<?php if (isset($admin)) { echo $admin->password; } ?>" />
       </div>
     </div>
   </div>
@@ -20,7 +30,7 @@
     <div class="row">
       <div class="col-sm-3"><label for="varchar">Nama Lengkap</label></div>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Lengkap" />
+        <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama Lengkap" value="<?php if (isset($admin)) { echo $admin->nama_admin; } ?>"/>
       </div>
     </div>
   </div>
@@ -28,16 +38,7 @@
     <div class="row">
       <div class="col-sm-3"><label for="varchar">Alamat</label></div>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="namaibu" id="namaibu" placeholder="Alamat" />
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-3"><label for="varchar">Email</label></div>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" name="email" id="email" placeholder="Email" />
+        <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" value="<?php if (isset($admin)) { echo $admin->alamat_admin; } ?>"/>
       </div>
     </div>
   </div>
@@ -46,7 +47,7 @@
     <div class="row">
       <div class="col-sm-3"><label for="varchar">Telp/HP</label></div>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="namaibu" id="namaibu" placeholder="No HP/Telp" />
+        <input type="text" class="form-control" name="telp" id="telp" placeholder="No HP/Telp" value="<?php if (isset($admin)) { echo $admin->telp_admin; } ?>"/>
       </div>
     </div>
   </div>
@@ -55,25 +56,7 @@
     <div class="row">
       <div class="col-sm-3"><label for="varchar">Level</label></div>
       <div class="col-sm-6">
-        <input type="text" class="form-control" name="level" id="level" placeholder="Level" />
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-sm-3"><label for="varchar">Blokir</label></div>
-      <div class="col-sm-6">
-        <div class="row">
-          <div class="col-sm-1 form-check form-check-inline">
-            <input type="radio" class="form-check-input" name="inlineRadioOption" id="inlineRadio1" value="option1"/>
-            <label class="form-check-lable" for="inlineRadio1">Iya</label>
-          </div>
-          <div class="col-sm-1 form-check form-check-inline">
-            <input type="radio" class="form-check-input" name="inlineRadioOption" id="inlineRadio2" value="option2"/>
-            <label class="form-check-lable" for="inlineRadio2">Tidak</label>
-          </div>
-        </div>
+        <input type="text" class="form-control" name="level" id="level" readonly placeholder="Level" value="<?php if (isset($admin)) { echo $admin->level; } else {echo 'admin';} ?>"/>
       </div>
     </div>
   </div>

@@ -4,6 +4,10 @@
     </div>
     <br>
 
+    <?php if($this->session->flashdata('msg')): ?>
+      <p><?php echo $this->session->flashdata('msg'); ?></p>
+    <?php endif; ?>
+
     <div class="card-body">
       <table id="example1" class="table table-bordered table-striped">
         <thead>
@@ -11,40 +15,27 @@
           <th>No</th>
           <th>Username</th>
           <th>Nama</th>
-          <th>Level</th>
           <th>Alamat</th>
-          <th>Email</th>
           <th>Telp/HP</th>
-          <th>Blokir</th>
+          <th>Level</th>
           <th>Aksi</th>
         </tr>
         </thead>
         <tbody>
-       	<?php for ($i=0; $i <= 100; $i++) { ?>
-        <tr>
-          <td>1</td>
-          <td>admin123</td>
-          <td>Admin
-          </td>
-          <td>admin</td>
-          <td>Jl. Keindahan hutabn</td>
-          <td>Baik@gmail.com</td>
-          <td>078459</td>
-          <td>N</td>
-          <td>
-          	<a href="<?php echo base_url('User/edit_data_administrator'); ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
-        </tr>
-    	<?php } ?>
+       	<?php $no = 1; foreach ($admin as $adm): ?>
+          <tr>
+            <td><?php echo $no; ?></td>
+            <td><?php echo $adm['username']; ?></td>
+            <td><?php echo $adm['nama_admin']; ?></td>
+            <td><?php echo $adm['alamat_admin']; ?></td>
+            <td><?php echo $adm['telp_admin']; ?></td>
+            <td><?php echo $adm['level']; ?></td>
+            <td>
+              <a href="<?php echo base_url('User/edit_data_administrator/').$adm['id_user']; ?>" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
+              <a href="<?php echo base_url('User/hapus_data_administrator/').$adm['id_user']; ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus</a></td>
+          </tr>
+        <?php $no++; endforeach ?>
         </tbody>
-        <tfoot>
-        <tr>
-          <th>Rendering engine</th>
-          <th>Browser</th>
-          <th>Platform(s)</th>
-          <th>Engine version</th>
-          <th>CSS grade</th>
-        </tr>
-        </tfoot>
       </table>
     </div>
 </div>

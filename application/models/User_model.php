@@ -25,11 +25,11 @@ class User_model extends CI_Model {
 	// SISWA
 
 	public function all_siswa()	{
-		return $this->db->get('tb_siswa')->result_array();
+		return $this->db->select('*')->from('tb_siswa')->join('tb_kelas', 'tb_siswa.kelas = tb_kelas.id_kelas')->get()->result_array();
 	}
 
 	public function one_siswa($nis)	{
-		return $this->db->select('*')->from('tb_siswa')->where('nis',$nis)->get()->result_array();
+		return $this->db->select('*')->from('tb_siswa')->join('tb_kelas', 'tb_siswa.kelas = tb_kelas.id_kelas')->where('tb_siswa.nis',$nis)->get()->result_array();
 	}
 
 	public function insertsiswa($data) {
@@ -50,6 +50,10 @@ class User_model extends CI_Model {
 
 	public function all_kelas()	{
 		return $this->db->get('tb_kelas')->result_array();
+	}
+
+	public function siswaperkls($id) {
+		return $this->db->select('*')->from('tb_siswa')->join('tb_kelas', 'tb_siswa.kelas = tb_kelas.id_kelas')->where('kelas',$id)->get()->result_array();
 	}
 
 	public function lastid() {
@@ -156,37 +160,21 @@ class User_model extends CI_Model {
 	}
 
 
-
-
-
-	
-
-	public function data_alat_mining() {
-		return $this->db->get('data_alat')->result_array();
+	// Admin
+	public function all_admin() {
+		return $this->db->get('log_admin')->result_array();
 	}
 
-	public function fuzzy_kriteria() {
-		return $this->db->get('fuzzytiapkriteria')->result_array();
+	public function insert_admin($data) {
+		$this->db->replace('log_admin', $data);
 	}
 
-	public function moo_kriteria() {
-		return $this->db->get('moo_kriteria')->result_array();
+	public function one_admin($id) {
+		return $this->db->select("*")->from("log_admin")->where('id_user',$id)->get()->row();
 	}
 
-	public function harga() {
-		return $this->db->get('kriteriaharga')->result_array();
-	}
-
-	public function kecepatan() {
-		return $this->db->get('kriteriakecepatan')->result_array();
-	}
-
-	public function listrik() {
-		return $this->db->get('kriterialistrik')->result_array();
-	}
-
-	public function keuntungan() {
-		return $this->db->get('kriteriakeuntungan')->result_array();
+	public function deleteadmin($id) {
+		$this->db->where('id_user', $id)->delete('log_admin');
 	}
 	
 }
